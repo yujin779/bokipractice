@@ -1,12 +1,170 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Static Template</title>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+    <!-- <script src="quizfile.js" type="module"></script> -->
+    <script>
+      //エンターキーでフォーカスを変える
+      function keydown(e) {
+        try {
+          if (e.keyCode === 13) {
+            var obj = document.activeElement;
+            obj.nextElementSibling.focus();
+          }
+        } catch (e) {}
+      }
+      window.onkeydown = keydown;
+    </script>
+    <style>
+      html {
+        height: 100%;
+      }
+
+      body {
+        height: 100%;
+        margin: 0;
+      }
+    </style>
   </head>
+
   <body>
-    <h1>This is a static template, there is no bundler or bundling involved!</h1>
+    <!-- 問題文 -->
+    <div id="question"></div>
+
+    <table
+      border="1"
+      width="100%"
+      style="table-layout: fixed; display: none"
+      id="answer-table"
+    >
+      <tr>
+        <th bgcolor="#EE0000"><font color="#FFFFFF">借方勘定項目</font></th>
+        <th bgcolor="#EE0000"><font color="#FFFFFF">金額</font></th>
+        <th bgcolor="#EE0000"><font color="#FFFFFF">貸方勘定項目</font></th>
+        <th bgcolor="#EE0000"><font color="#FFFFFF">金額</font></th>
+      </tr>
+      <tr>
+        <th id="a-dr-ac"></th>
+        <th id="a-dr-amt"></th>
+        <th id="a-cr-ac"></th>
+        <th id="a-cr-amt"></th>
+      </tr>
+    </table>
+
+    <form
+      action="#"
+      id="answer"
+      autocomplete="off"
+      onsubmit="return false;"
+    ></form>
+    <table border="1" width="100%" style="table-layout: fixed">
+      <tr>
+        <th bgcolor="#00EE00"><font color="#FFFFFF">借方勘定項目</font></th>
+        <th bgcolor="#00EE00"><font color="#FFFFFF">金額</font></th>
+        <th bgcolor="#00EE00"><font color="#FFFFFF">貸方勘定項目</font></th>
+        <th bgcolor="#00EE00"><font color="#FFFFFF">金額</font></th>
+      </tr>
+      <tr>
+        <th>
+          <select id="dr-ac-1" form="answer" style="width: 96%"></select>
+        </th>
+        <th>
+          <input
+            type="text"
+            id="dr-amt-1"
+            onfocus="offComma(this);"
+            onblur="toComma(this);"
+            form="answer"
+            style="width: 96%"
+          />
+        </th>
+        <th>
+          <select id="cr-ac-1" form="answer" style="width: 96%"></select>
+        </th>
+        <th>
+          <input
+            type="text"
+            id="cr-amt-1"
+            onfocus="offComma(this);"
+            onblur="toComma(this);"
+            form="answer"
+            style="width: 96%"
+          />
+        </th>
+      </tr>
+      <tr>
+        <th><select id="dr-ac-2" form="answer" style="width: 96%"></select></th>
+        <th>
+          <input
+            type="text"
+            id="dr-amt-2"
+            onfocus="offComma(this);"
+            onblur="toComma(this);"
+            form="answer"
+            style="width: 96%"
+          />
+        </th>
+        <th>
+          <select id="cr-ac-2" form="answer" style="width: 96%"></select>
+        </th>
+        <th>
+          <input
+            type="text"
+            id="cr-amt-2"
+            onfocus="offComma(this);"
+            onblur="toComma(this);"
+            form="answer"
+            style="width: 96%"
+          />
+        </th>
+      </tr>
+      <tr>
+        <th><select id="dr-ac-3" form="answer" style="width: 96%"></select></th>
+        <th>
+          <input
+            type="text"
+            id="dr-amt-3"
+            onfocus="offComma(this);"
+            onblur="toComma(this);"
+            form="answer"
+            style="width: 96%"
+          />
+        </th>
+        <th>
+          <select id="cr-ac-3" form="answer" style="width: 96%"></select>
+        </th>
+        <th>
+          <input
+            type="text"
+            id="cr-amt-3"
+            onfocus="offComma(this);"
+            onblur="toComma(this);"
+            form="answer"
+            style="width: 96%"
+          />
+        </th>
+      </tr>
+    </table>
+
+    <p>
+      <input
+        type="button"
+        value="確認する"
+        onClick="ansButton();"
+        form="answer"
+      />
+    </p>
+    <p>
+      <input
+        type="button"
+        value="他の問題"
+        onClick="nextQuestion();"
+        form="answer"
+        style="display: block; margin: 0 0 0 auto"
+      />
+    </p>
+
+    <script src="main.js"></script>
   </body>
 </html>
